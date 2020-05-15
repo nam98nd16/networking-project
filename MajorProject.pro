@@ -20,6 +20,7 @@ SOURCES += \
     Enemy.cpp \
     MyRect.cpp \
     MyView.cpp \
+    client.cpp \
     main.cpp \
     mainwindow.cpp \
     scene.cpp
@@ -29,6 +30,7 @@ HEADERS += \
     Enemy.h \
     MyRect.h \
     MyView.h \
+    client.h \
     mainwindow.h \
     scene.h
 

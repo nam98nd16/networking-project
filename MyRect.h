@@ -15,9 +15,19 @@ public:
     int width, height;
 
     MyRect();
-    void keyPressEvent(QKeyEvent * event);
+
 public slots:
     void spawn();
+    void NewPos(char *buff);
+    void keyPressEvent(QKeyEvent * event);
+
+
+private:
+    char buff[10];
+
+signals:
+   void sendToClient(char *buff);
+ //  void sendToClient(char *buff);
 };
 
 

@@ -1,3 +1,4 @@
+#include "client.h"
 #include "scene.h"
 #include "MyRect.h"
 #include "Enemy.h"
@@ -10,6 +11,8 @@ scene::scene()
 {
     this->new_scene = new QGraphicsScene();
     this->player = new MyRect();
+ //   this->play = new Client();
+   // play->createNewClient();
     this->enemy = new Enemy();
     this->new_scene->setSceneRect(0, 0, 800, 600);
 

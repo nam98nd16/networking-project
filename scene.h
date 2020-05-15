@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include <QGraphicsScene>
+#include "client.h"
 #include "MyRect.h"
 #include "Enemy.h"
 
@@ -11,6 +12,7 @@ private:
 public:
     QGraphicsScene *new_scene;
     MyRect *player;
+    Client *play;
     Enemy *enemy;
     scene();
     void setUp();
