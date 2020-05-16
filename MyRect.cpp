@@ -22,50 +22,55 @@ MyRect::MyRect()
 
     Client *c = new Client(this);
     c->createNewClient();
-    QObject::connect(this, &MyRect::sendToClient, c, &Client::sendToServer);
+    QObject::connect(this, &MyRect::guiSendPosition, c, &Client::sendNewPostionToServer);
+    QObject::connect(this, &MyRect::guiSendBulletInfo, c, &Client::sendBulletSignalToserver);
 
 }
 
 void MyRect::keyPressEvent(QKeyEvent *event)
 {
+   char buff[60];
+
    if (event->key() == Qt::Key_Left) {
        if (pos().x() > 0){
-
-  //      char buff[60];
-        strcpy(this->buff, "LEFT");
-        emit sendToClient(this->buff);
+        strcpy(buff, "LEFT");
+        emit guiSendPosition(buff);
+        bzero(buff, sizeof(buff));
        }
    }
 
    if (event->key() == Qt::Key_Right) {
        if (pos().x() < 800 - this->rect().width()){
- //       setPos(x() + 10, y());
-        strcpy(this->buff, "RIGHT");
-        emit sendToClient(this->buff);
+        strcpy(buff, "RIGHT");
+        emit guiSendPosition(buff);
+        bzero(buff, sizeof(buff));
        }
    }
 
    if (event->key() == Qt::Key_Up) {
        if (pos().y() > 0){
-   //        setPos(x(), y() - 10);
-           strcpy(this->buff, "UP");
-           emit sendToClient(this->buff);
+           strcpy(buff, "UP");
+           emit guiSendPosition(buff);
+           bzero(buff, sizeof(buff));
        }
    }
 
    if (event->key() == Qt::Key_Down) {
        if (pos().y() < 600 - this->rect().height()){
-     //   setPos(x(), y() + 10);
-        strcpy(this->buff, "DOWN");
-        emit sendToClient(this->buff);
+        strcpy(buff, "DOWN");
+        emit guiSendPosition(buff);
+        bzero(buff, sizeof(buff));
        }
    }
 
    if (event->key() == Qt::Key_Space) {
-       Bullet *bullet = new Bullet();
-       bullet->setPos(x(), y());
-       scene()->addItem(bullet);
-     //  qDebug() << "Bullet appeared";
+       strcpy(buff, "BULLET");
+       emit guiSendBulletInfo(buff);
+       bzero(buff, sizeof(buff));
+
+//       Bullet *bullet = new Bullet();
+//       bullet->setPos(x(), y());
+//       scene()->addItem(bullet);
    }
 
 }
@@ -88,7 +93,16 @@ void MyRect::NewPos(char *buff)
     if (strcmp(buff, "Client n.0:DOWN") == 0) {
         setPos(x(), y() + 10);
     }
+}
 
+void MyRect::handleBullet(char *buff)
+{
+    qDebug() << buff;
+    if (strcmp(buff, "Client n.0:BULLET") == 0) {
+        Bullet *bullet = new Bullet();
+        bullet->setPos(x(), y());
+        scene()->addItem(bullet);
+    }
 }
 
 void MyRect::spawn()

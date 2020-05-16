@@ -51,12 +51,14 @@ private:
     static int FindClientIndex(Client *c);
 
 public slots:
-    void sendToServer(char *s);
+    void sendNewPostionToServer(char *s);
   //  void sendToServer(char *s);
+    void sendBulletSignalToserver(char *s);
 
 signals:
-    void sentNewPosClient(char *s);
-
+    void serverUpdateNewPosClient(char *s);
+    void serverUpdateBulletClient(char *s);
+    void serverCreateEnemy();
 };
 
 #endif // CLIENT_H
