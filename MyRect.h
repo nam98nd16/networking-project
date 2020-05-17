@@ -7,6 +7,9 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 
+QT_FORWARD_DECLARE_CLASS(QObject);
+
+
 extern QGraphicsView *view;
 
 class MyRect: public QObject, public QGraphicsRectItem{

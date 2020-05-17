@@ -27,6 +27,9 @@
 
 using namespace std;
 
+QT_FORWARD_DECLARE_CLASS(QObject);
+
+
 class Client: public QObject
 {
     Q_OBJECT

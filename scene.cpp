@@ -16,7 +16,6 @@ scene::scene()
     this->enemy = new Enemy();
     this->new_scene->setSceneRect(0, 0, 800, 600);
 
-    // add the item to the scene
     this->new_scene->addItem(this->player);
 
 //    this->enemy = new Enemy();

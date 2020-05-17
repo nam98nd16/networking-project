@@ -6,6 +6,9 @@
 #include "MyRect.h"
 #include "Enemy.h"
 
+QT_FORWARD_DECLARE_CLASS(QObject);
+
+
 class scene {
 private:
    // MyRect *player;
