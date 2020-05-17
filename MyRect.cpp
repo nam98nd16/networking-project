@@ -8,10 +8,10 @@
 #include <QDebug>
 #include <QList>
 
-MyRect::MyRect()
+MyRect::MyRect(Client *c)
 {
     this->setRect(0, 0, 100, 100); // change the rect from 0x0 (default) to 100x100 pixels
-   // setPixmap(QPixmap(":/image/airplane.jpg"));
+//    setPixmap(QPixmap(":/image/airplane.jpg"));
 //   QPixmap pix(":/images/airplane.png");
 //   this->width = pix.width();
 //   this->height = pix.height();
@@ -20,12 +20,20 @@ MyRect::MyRect()
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 
-    Client *c = new Client(this);
-    c->createNewClient();
+//    Client *c = new Client(this);
+//    c->createNewClient();
+
     QObject::connect(this, &MyRect::guiSendPosition, c, &Client::sendNewPostionToServer);
     QObject::connect(this, &MyRect::guiSendBulletInfo, c, &Client::sendBulletSignalToserver);
 
+ //   QObject::connect(this, &MyRect::guiAddPlayerToScene, s, &scene::sceneAddPlayer);
 }
+
+//void MyRect::guiCreateNewPlayer()
+//{
+//    emit guiAddPlayerToScene(this);
+//}
+
 
 void MyRect::keyPressEvent(QKeyEvent *event)
 {

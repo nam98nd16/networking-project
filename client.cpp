@@ -6,13 +6,22 @@
 #include <QApplication>
 #include <QDebug>
 
-Client::Client(MyRect *rect)
+Client::Client(scene *s)
 {
-      QObject::connect(this, &Client::serverUpdateNewPosClient, rect, &MyRect::NewPos);
-      QObject::connect(this, &Client::serverUpdateBulletClient, rect, &MyRect::handleBullet);
+    MyRect *player = new MyRect(this);
+    this->rect = player;
+    QObject::connect(this, &Client::serverCreateNewPlayer, s, &scene::sceneAddPlayer);
+    QObject::connect(this, &Client::serverUpdateNewPosClient, player, &MyRect::NewPos);
+    QObject::connect(this, &Client::serverUpdateBulletClient, player, &MyRect::handleBullet);
 }
 
-void Client::createNewClient()
+//Client::Client(MyRect *rect)
+//{
+//      QObject::connect(this, &Client::serverUpdateNewPosClient, rect, &MyRect::NewPos);
+//      QObject::connect(this, &Client::serverUpdateBulletClient, rect, &MyRect::handleBullet);
+//}
+
+void Client::createNewClient(scene *s)
 {
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1) {
@@ -37,6 +46,8 @@ void Client::createNewClient()
     }
     else{
         printf("connected to the server..\n");
+    //    this->new_s = s;
+        emit serverCreateNewPlayer(this->rect);
     }
 }
 

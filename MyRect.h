@@ -7,6 +7,14 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 
+#include "client.h"
+//#include "scene.h"
+
+QT_FORWARD_DECLARE_CLASS(QObject);
+
+//class scene;
+//class client;
+
 extern QGraphicsView *view;
 
 class MyRect: public QObject, public QGraphicsRectItem{
@@ -15,11 +23,16 @@ public:
     int width, height;
 
     MyRect();
+    MyRect(class Client *c);
+
+
 
 public slots:
     void spawn();
     void NewPos(char *buff);
     void handleBullet(char *buff);
+ //   void guiCreateNewPlayer();
+
     void keyPressEvent(QKeyEvent * event);
 
 
@@ -29,6 +42,7 @@ private:
 signals:
    void guiSendPosition(char *buff);
    void guiSendBulletInfo(char *buff);
+   void guiAddPlayerToScene(MyRect *rect);
 };
 
 

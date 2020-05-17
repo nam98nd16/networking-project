@@ -20,6 +20,7 @@
 #include <QObject>
 
 #include "MyRect.h"
+#include "scene.h"
 
 #define PORT 30696
 #define MAX 80
@@ -27,13 +28,20 @@
 
 using namespace std;
 
+QT_FORWARD_DECLARE_CLASS(QObject);
+
+
+class scene;
+class MyRect;
+
 class Client: public QObject
 {
     Q_OBJECT
 
 public:
-    Client(MyRect *rect);
-    void createNewClient();
+    Client(scene *s);
+ //   Client(MyRect *rect);
+    void createNewClient(scene *s);
 
 
 private:
@@ -44,6 +52,8 @@ private:
     struct sockaddr_in servaddr, cli;
     // char buff[256];
     char buff[10];
+  //  scene *new_s;
+    MyRect *rect;
 
   private:
     static void ListClients();
@@ -52,10 +62,12 @@ private:
 
 public slots:
     void sendNewPostionToServer(char *s);
-  //  void sendToServer(char *s);
     void sendBulletSignalToserver(char *s);
 
 signals:
+//    void serverCreateNewPlayer(scene *s);
+    void serverCreateNewPlayer(MyRect *rect);
+
     void serverUpdateNewPosClient(char *s);
     void serverUpdateBulletClient(char *s);
     void serverCreateEnemy();
