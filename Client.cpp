@@ -70,7 +70,7 @@ void Client::sendNewPostionToServer(char *s)
     //                exit(EXIT_FAILURE);
     //           }
 
-    qDebug() << buff << endl;
+ //   qDebug() << buff << endl;
 
     if (strcmp(buff, "Client n.0:LEFT") == 0 || strcmp(buff, "Client n.0:RIGHT") == 0
                || strcmp(buff, "Client n.0:UP") == 0 || strcmp(buff, "Client n.0:DOWN") == 0) {
@@ -93,3 +93,22 @@ void Client::sendBulletSignalToserver(char *s)
         emit serverUpdateBulletClient(buff);
     }
 }
+
+void Client::sendDeathPlayerInfoToServer(char *s)
+{
+    char buff[MAX];
+    strcpy(buff, s);
+
+ //   qDebug() << buff << endl;
+
+
+    write(sockfd, buff, sizeof(buff));
+    bzero(buff, sizeof(buff));
+    read(sockfd, buff, sizeof(buff));
+
+    if (strcmp(buff, "Client n.0:BULLET") == 0) {
+        emit serverAssertPlayerDeath(buff);
+    }
+
+}
+

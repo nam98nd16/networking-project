@@ -33,7 +33,7 @@ public:
     int getHealth();
 
 public slots:
-    void decreaseHealth();
+    int decreaseHealth();
 
    // void spawn();
     void NewPos(char *buff);
@@ -53,6 +53,7 @@ signals:
    void guiSendPosition(char *buff);
    void guiSendBulletInfo(char *buff);
    void guiAddPlayerToScene(MyRect *rect);
+   void guiSendPlayerDeathInfo(char *buff);
 };
 
 

@@ -18,7 +18,7 @@ MyRect::MyRect()
 MyRect::MyRect(Client *c)
 {
     this->setRect(0, 0, 100, 100); // change the rect from 0x0 (default) to 100x100 pixels
-//    setPixmap(QPixmap(":/image/airplane.jpg"));
+ //   setPixmap(QPixmap(":/image/airplane.jpg"));
 //   QPixmap pix(":/images/airplane.png");
 //   this->width = pix.width();
 //   this->height = pix.height();
@@ -35,7 +35,8 @@ MyRect::MyRect(Client *c)
     QObject::connect(this, &MyRect::guiSendPosition, c, &Client::sendNewPostionToServer);
     QObject::connect(this, &MyRect::guiSendBulletInfo, c, &Client::sendBulletSignalToserver);
 
- //   QObject::connect(this, &MyRect::guiAddPlayerToScene, s, &scene::sceneAddPlayer);
+   // QObject::connect(this, &MyRect::guiSendPlayerDeathInfo, c, &Client::sendDeathPlayerInfoToServer);
+
 }
 
 //void MyRect::guiCreateNewPlayer()
@@ -94,7 +95,7 @@ void MyRect::keyPressEvent(QKeyEvent *event)
 
 void MyRect::NewPos(char *buff)
 {
-    qDebug() << buff;
+ //   qDebug() << buff;
     if (strcmp(buff, "Client n.0:LEFT") == 0) {
         setPos(x() - 10, y());
     }
@@ -122,10 +123,21 @@ void MyRect::handleBullet(char *buff)
     }
 }
 
-void MyRect::decreaseHealth()
+int MyRect::decreaseHealth()
 {
    this->health->decrease();
+//   qDebug() << this->health->getHealth();
+//   if (this->health->getHealth() == 0) {
+//       char buff[60];
+//       strcpy(buff, "DEATH");
+//  //     emit guiSendPlayerDeathInfo(buff);
+//     //  bzero(buff, sizeof(buff));
+//       return 1;
+//   }
+   return 0;
 }
+
+
 
 //void MyRect::spawn()
 //{

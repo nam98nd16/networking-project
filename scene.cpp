@@ -30,7 +30,7 @@ scene::scene()
     QTimer *new_timer = new QTimer();
     connect(new_timer, &QTimer::timeout, this->enemy, &Enemy::spawn);
 
-    new_timer->start(800);
+    new_timer->start(500);
     this->new_scene->addItem(this->enemy);
 }
 

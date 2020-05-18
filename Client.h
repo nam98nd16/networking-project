@@ -63,6 +63,8 @@ private:
 public slots:
     void sendNewPostionToServer(char *s);
     void sendBulletSignalToserver(char *s);
+    void sendDeathPlayerInfoToServer(char *s);
+
 
 signals:
 //    void serverCreateNewPlayer(scene *s);
@@ -71,6 +73,7 @@ signals:
     void serverUpdateNewPosClient(char *s);
     void serverUpdateBulletClient(char *s);
     void serverCreateEnemy();
+    void serverAssertPlayerDeath(char *s);
 };
 
 #endif // CLIENT_H
