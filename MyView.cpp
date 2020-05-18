@@ -12,7 +12,7 @@ MyView::MyView(scene *scene)
 
     // show the view
     this->new_view->show();
-    this->new_view->setFixedSize(800, 600);
+    this->new_view->setFixedSize(1280, 720);
 }
 
 int MyView::getWidthPlayer(scene *scene)

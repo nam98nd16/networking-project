@@ -1,4 +1,4 @@
-#include "client.h"
+#include "Client.h"
 #include "scene.h"
 
 #include <unistd.h>
@@ -59,7 +59,6 @@ void Client::sendNewPostionToServer(char *s)
 //    strcpy(this->buff, s);
 //    qDebug() << this->buff;
 //    qDebug() << buff;
-  //  bzero(buff, sizeof(buff));
 
     write(sockfd, buff, sizeof(buff));
     //       printf("From Server : %s", buff);

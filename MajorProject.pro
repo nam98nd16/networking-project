@@ -17,20 +17,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Bullet.cpp \
+    Client.cpp \
     Enemy.cpp \
+    Health.cpp \
     MyRect.cpp \
     MyView.cpp \
-    client.cpp \
     main.cpp \
     mainwindow.cpp \
     scene.cpp
 
 HEADERS += \
     Bullet.h \
+    Client.h \
     Enemy.h \
+    Health.h \
     MyRect.h \
     MyView.h \
-    client.h \
     mainwindow.h \
     scene.h
 

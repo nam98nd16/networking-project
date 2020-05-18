@@ -3,17 +3,19 @@
 
 #include <QGraphicsScene>
 #include <QObject>
-#include "client.h"
+#include "Client.h"
 
 #include "MyRect.h"
 #include "Enemy.h"
+#include "Health.h"
 
 QT_FORWARD_DECLARE_CLASS(QObject);
 
 
 class MyRect;
 class Client;
-\
+class Enemy;
+
 class scene : public QObject {
     Q_OBJECT
 
@@ -24,6 +26,7 @@ public:
     MyRect *player;
     Client *client;
     Enemy *enemy;
+    Health *health;
     scene();
     void setUp();
     QGraphicsScene *getScene();

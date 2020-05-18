@@ -1,4 +1,4 @@
-#include "client.h"
+#include "Client.h"
 #include "scene.h"
 #include "MyRect.h"
 #include "Enemy.h"
@@ -13,28 +13,35 @@ scene::scene()
  //   this->player = new MyRect();
 
 
-    this->enemy = new Enemy();
-    this->new_scene->setSceneRect(0, 0, 900, 600);
+//    this->enemy = new Enemy();
+    this->new_scene->setSceneRect(0, 0, 1280, 720);
 
     Client *new_client = new Client(this);
     this->client = new_client;
 
     this->client->createNewClient(this);
 
-    // add the item to the scene
-  //  this->new_scene->addItem(this->player);
+//    this->health = new Health();
+//    this->health->setPos(this->health->x(), this->health->y()+25);
+//    this->new_scene->addItem(this->health);
 
-//    this->enemy = new Enemy();
-//    QTimer *new_timer = new QTimer();
-//    QObject::connect(new_timer, SIGNAL(timeout()), enemy, SLOT(spawn()));
+    this->enemy = new Enemy(this->player);
 
-//    new_timer->start(500);
+    QTimer *new_timer = new QTimer();
+    connect(new_timer, &QTimer::timeout, this->enemy, &Enemy::spawn);
+
+    new_timer->start(800);
+    this->new_scene->addItem(this->enemy);
 }
 
 void scene::sceneAddPlayer(MyRect *rect)
 {
     this->player = rect;
     this->new_scene->addItem(this->player);
+
+    this->health = rect->health;
+    this->health->setPos(health->x(),health->y()+25);
+    this->new_scene->addItem(health);
 
 }
 

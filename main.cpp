@@ -25,10 +25,10 @@ int main(int argc, char *argv[]){
     Ascene->player->setPos((Aview->getWidthView() - Aview->getWidthPlayer(Ascene)) / 2,
                            Aview->getHeightView() - Aview->getHeightPlayer((Ascene)));
 
-    QTimer *new_timer = new QTimer();
-    QObject::connect(new_timer, SIGNAL(timeout()), Ascene->player, SLOT(spawn()));
+//    QTimer *new_timer = new QTimer();
+//    QObject::connect(new_timer, SIGNAL(timeout()), Ascene->player, SLOT(spawn()));
 
-    new_timer->start(1500);
+//    new_timer->start(500);
 
 
     return a.exec();
