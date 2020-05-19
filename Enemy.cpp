@@ -25,7 +25,6 @@ Enemy::Enemy(MyRect *rect): QObject(), QGraphicsRectItem()
 
     this->player = rect;
 
-    QObject::connect(this, &Enemy::collidePlayer, rect, &MyRect::decreaseHealth);
 
 
 //    QTimer *new_timer = new QTimer();
@@ -44,15 +43,23 @@ void Enemy::move()
     }
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for(int i = 0, n = colliding_items.size(); i < n; ++i) {
-//           scene()->removeItem(this);
-//           delete this;
+
            if (typeid((*colliding_items[i])) == typeid(MyRect)) {
-               emit collidePlayer();
-//               scene()->removeItem(colliding_items[i]);
-//               scene()->removeItem(this);
-//               delete colliding_items[i];
-//               delete this;
-//               exit(EXIT_FAILURE);
+         //      emit collidePlayer();
+               this->player->decreaseHealth();
+
+               if (this->player->health->getHealth() > 0) {
+                   scene()->removeItem(this);
+                   delete this;
+               }
+
+               if (this->player->health->getHealth() == 0) {
+                   scene()->removeItem(this);
+                   scene()->removeItem(colliding_items[i]);
+                   delete this;
+                   delete colliding_items[i];
+                   exit(EXIT_FAILURE);
+               }
            }
     }
 }
